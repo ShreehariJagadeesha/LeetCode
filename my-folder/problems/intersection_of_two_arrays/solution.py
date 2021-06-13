@@ -1,5 +1,3 @@
-import numpy as np
-
 class Solution(object):
     def intersection(self, nums1, nums2):
         """
@@ -7,17 +5,22 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
-        ans = []
-        for i in range(0,len(nums1)):
-            for j in range(0, len(nums2)):
-                if nums1[i]==nums2[j]:
-                    ans.append(nums1[i])
+#         temp=[]
+#         i=0
+#         j=0
+#         while i < len(nums1):
+#             while j < len(nums2):
+#                 if nums1[i]==nums2[j]:
+#                     temp.append(nums1[i])
+#                 j=j+1
+#             j=0
+#             i=i+1
                     
-#         for k in range(0,len(ans)):
-#             if ans[k]==ans[k+1]:
-#                 ans.pop(k+1)
-                
-        myFinalList = np.unique(ans).tolist()
-        return myFinalList
-                
+#         indivisualset=set(temp)
+#         finallist=list(indivisualset)
         
+#         return finallist 
+        
+        set_nums1=set(nums1)
+        set_nums2=set(nums2)
+        return set_nums1.intersection(set_nums2)
