@@ -5,10 +5,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        h = {}
+        value_dict={}
         for i, num in enumerate(nums):
-            n = target - num
-            if n not in h:
-                h[num] = i
-            else:
-                return [h[n], i]
+            remaining = target-num
+            if remaining in value_dict:
+                return [value_dict[remaining],i]
+            value_dict[num]=i
+        return []
