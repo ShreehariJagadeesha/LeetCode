@@ -11,9 +11,13 @@ class Solution(object):
         :type q: TreeNode
         :rtype: bool
         """
-        if not p and not q:
-            return True
-        elif not p and q or not q and p or p.val!=q.val:
-            return False
-        else:
-            return Solution.isSameTree(self,p.left,q.left) and Solution.isSameTree(self,p.right,q.right)
+        def dfs(p,q):
+            if not p and not q: 
+                return True
+            
+            elif (p and not q) or (q and not p) or p.val!=q.val:
+                return False
+            
+            return dfs(p.left,q.left) and dfs(p.right,q.right)
+        
+        return dfs(p,q) 
