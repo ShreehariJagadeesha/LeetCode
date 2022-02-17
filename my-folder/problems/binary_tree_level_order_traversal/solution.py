@@ -10,12 +10,14 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
-        d=defaultdict(list)
+        hashlist=defaultdict(list)
+        
         def dfs(node,level):
-            if not node:return
-            d[level].append(node.val)
+            if not node: return
+            hashlist[level].append(node.val)
             dfs(node.left,level+1)
             dfs(node.right,level+1)
-            
+        
         dfs(root,0)
-        return d.values()
+        
+        return hashlist.values()
