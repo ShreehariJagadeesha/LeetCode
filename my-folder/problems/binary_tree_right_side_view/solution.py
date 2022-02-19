@@ -10,17 +10,14 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
-        result=[]
-        level=[]
-        queue=[root]
-        while queue!=[] and root is not None:
-            for node in queue:
-                if node.left:
-                    level.append(node.left)
-                if node.right:
-                    level.append(node.right)
-            result.append(node.val)
-            queue=level
-            level=[]
+        l=defaultdict(list)
+        def dfs(node,h):
+            if not node:return 0
+            l[h].append(node.val)
+            dfs(node.left,h+1)
+            dfs(node.right,h+1)
         
-        return result
+        dfs(root,0)
+        
+        return [v[-1] for k,v in l.items()]
+        
