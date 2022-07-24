@@ -4,4 +4,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        return True if len(nums)>len(set(nums)) else False
+        hashset=set()
+        
+        for n in nums:
+            if n in hashset:
+                return True
+            hashset.add(n)
+        return False
