@@ -5,10 +5,14 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        value_dict={}
-        for i, num in enumerate(nums):
-            remaining = target-num
-            if remaining in value_dict:
-                return [value_dict[remaining],i]
-            value_dict[num]=i
-        return []
+        prevMap={}
+        
+        for i, n in enumerate(nums):
+            diff=target-n
+            if diff in prevMap:
+                return [prevMap[diff],i]
+            prevMap[n]=i
+        return
+    
+    #i=index
+    #n=element in the hashmap
