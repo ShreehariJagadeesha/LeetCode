@@ -4,24 +4,17 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        if len(s)%2!=0:
-            return False
-    
-        opening=set("([{")
-        matching=set([ ("(",")"),("{","}"),("[","]") ])
-        st=[]
-    
-        for i in s:
+        stack=[]
+        closeToOpen={")":"(","}":"{","]":"["}
         
-            if i in opening:
-                st.append(i)
-            
+        for c in s:
+            if c in closeToOpen:
+                if stack and stack[-1]==closeToOpen[c]:
+                    stack.pop()
+                else:
+                    return False
             else:
-            
-                if len(st)==0:
-                    return False
-            
-                if (st.pop(),i) not in matching:
-                    return False
-            
-        return len(st)==0
+                stack.append(c)
+        
+        return True if not stack else False
+                
