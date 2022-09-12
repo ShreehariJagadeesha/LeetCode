@@ -10,18 +10,19 @@ class Solution(object):
         :type n: int
         :rtype: ListNode
         """
-        temp_node =  head
-        counter = 0
-        while temp_node:                 
-            counter = counter+1
-            temp_node = temp_node.next
-        if counter-n==0:
-            head = head.next
-            return head
-        runner = head
-        for i in range(counter-n):
-            walker = runner
-            runner = runner.next
-        walker.next = runner.next
-        runner.next = None
-        return head  
+        dummy=ListNode(0,head)
+        left=dummy
+        right=head
+        
+        while n>0 and right:
+            right=right.next
+            n=n-1
+            
+        while right:
+            left=left.next
+            right=right.next
+        
+        left.next=left.next.next
+        
+        
+        return dummy.next
