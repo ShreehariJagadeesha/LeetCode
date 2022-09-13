@@ -5,16 +5,18 @@ class Solution(object):
         :type k: int
         :rtype: List[List[int]]
         """
-        heap=[]
+        minHeap=[]
         
         for x,y in points:
-            heapq.heappush(heap,(math.sqrt(x**2+y**2),[x,y]))
+            dist=(x**2)+(y**2)
+            minHeap.append([dist,x,y])
             
-        output=[]
-        a=1
-        while heap and a<=k:
-            h=heapq.heappop(heap)
-            output.append(h[1])
-            a+=1
-        return output
+        heapq.heapify(minHeap)
+        res=[]
+        while k>0:
+            dist,x,y=heapq.heappop(minHeap)
+            res.append([x,y])
+            k=k-1
+            
+        return res
             
