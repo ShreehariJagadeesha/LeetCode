@@ -10,14 +10,15 @@ class Solution(object):
         :type root: TreeNode
         :rtype: TreeNode
         """
-        def dfs(node):
-            if not node: return
-            
-            dfs(node.left)
-            dfs(node.right)
-            
-            node.left,node.right=node.right,node.left
-            
-        dfs(root)
+        if not root:
+            return None
+    
+        tmp=root.right
+        root.right=root.left
+        root.left=tmp
+    
+        self.invertTree(root.right)
+        self.invertTree(root.left)
         
         return root
+    
