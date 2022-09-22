@@ -5,27 +5,27 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        N=len(nums)
-        l=0
-        r=N-1
-        while (l<r):
-            mid=(l+r)//2
-            if nums[mid]>nums[r]:
-                l=mid+1
+        l, r = 0, len(nums) - 1
+
+        while l <= r:
+            mid = (l + r) // 2
+            if target == nums[mid]:
+                return mid
+
+            # left sorted portion
+            if nums[l] <= nums[mid]:
+                if target > nums[mid] or target < nums[l]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+            # right sorted portion
             else:
-                r=mid
-        
-        pivot=l
-        l=0
-        r=N-1
-        while (l<=r):
-            mid=(l+r)//2
-            mid2=(pivot+mid)%N
-            if nums[mid2]==target:
-                return mid2
-            elif nums[mid2]<target:
-                l=mid+1
-            else:
-                r=mid-1
+                if target < nums[mid] or target > nums[r]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
         return -1
                 
+            
+            
+            
