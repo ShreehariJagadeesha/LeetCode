@@ -1,16 +1,9 @@
-class Solution(object):
-    def canJump(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
-        right=0
-        last=len(nums)-1
-        for i in range(len(nums)):
-            if i>right:
-                return False
-            if nums[i]+i>right:
-                right=nums[i]+i
-            if right>=last:
-                return True
-            
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        goal=len(nums)-1
+
+        for i in range(len(nums)-1,-1,-1):
+            if i + nums[i] >= goal:
+                goal=i
+
+        return True if goal==0 else False
